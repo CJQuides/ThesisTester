@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Choose Prof{% endblock %} 
+
+{% block content %}
+{{session['currentFacultyName']}}
+{{session['currentCourse']}}
+
+    <div class="title">
+        <h5 class="p-2">PERFORMANCE EVALUATION INSTRUMENT FOR TEACHING EFFECTIVENESS BY THE STUDENTS FOR ONLINE CLASS</h5>
+    </div>
+
+    {% for info in stuInfo %}
+        <div id="div" style="border: black solid 1px;" class="p-3 m-3">
+            Course: {{ info.enrolledCourse }} <br>
+            Faculty Name: {{ info.professorName }} <br>
+            
+            {%if info.evalutationStatus == 'YES'%}
+                <form method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="facultyNames" name="facultyNames" value="{{info.professorName}}" readonly>
+                        <input type="text" class="form-control" id="course" name="course" value="{{info.enrolledCourse}}" readonly>
+                        <input type="text" class="form-control" id="evalStatus" name="evalStatus" value="{{info.evalutationStatus}}" readonly>
+                    </div>                
+                    <input type="submit" id="submitButton" class="btn btn-success" value="Submit" disabled>
+                </form>
+            {%else%}
+                <form method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="facultyNames" name="facultyNames" value="{{info.professorName}}" readonly>
+                        <input type="text" class="form-control" id="course" name="course" value="{{info.enrolledCourse}}" readonly>
+                        <input type="text" class="form-control" id="evalutationStatus" name="evalutationStatus" value="{{info.evalutationStatus}}" readonly>
+                    </div>                
+                    <input type="submit" id="submitButton" class="btn btn-success" value="Submit">
+                </form>
+            {%endif%}
+            
+            <!-- <a href="form" id="formBtn" class="btn btn-success">Evaluate</a> -->
+        </div>
+    {% endfor %}
+
+    <p style="display: block;" type="button" id="subBtn" class="float-end">Click Me</p>
+    <button onclick="showDiv()">Click me</button>
+
+
+    <script>
+        function showDiv(){
+            var cErrors2 = document.getElementById("subBtn");
+            cErrors2.style.display = "none";
+        }
+    </script>
+
+{% endblock %} 
+
+
