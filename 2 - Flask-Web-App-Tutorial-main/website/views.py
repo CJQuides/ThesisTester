@@ -112,12 +112,12 @@ def form():
         rate5 = int(rate5)
 
         rateA = (rate1+rate2+rate3+rate4+rate5)/5
+        
+        #sentimentValue, saveComment = SentenceAnalysis(comment)   
 
-        sentimentValue, saveComment = SentenceAnalysis(comment)   
+        sentimentValue = 3
 
-        """ sentimentValue = 5
-
-        saveComment = "none" """
+        saveComment = "No Algo"
 
         resultExist = Result.query.filter_by(facultyName=session['currentFacultyName'],course=session['currentCourse'], facultyClass=session['currentClass'], campus=session['currentCampus'], college=session['currentCollege']).first()#,facultyClass
         
@@ -252,7 +252,7 @@ def predictMe():
     
     return render_template("predictMe.php", pred=picklePred, userName=usName) """
 
-
+"""
 def SentenceAnalysis(userInput):
     import pandas as pd
 
@@ -388,4 +388,4 @@ def SentenceAnalysis(userInput):
         else:
             print("word doesn't exist")
 
-    return sentimentValue, saveSenToDb
+    return sentimentValue, saveSenToDb"""
